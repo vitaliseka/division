@@ -1,25 +1,25 @@
-# If you prefer the allow list template instead of the deny list, see community template:
-# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
-#
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# Test binary, built with `go test -c`
-*.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-# Dependency directories (remove the comment below to include it)
-# vendor/
-
-# Go workspace file
-go.work
-go.work.sum
-
-# env file
+# Local .terraform directories
+**/.terraform/*
+# .tfstate files
+*.tfstate
+*.tfstate.*
+# Crash log files
+crash.log
+# Exclude all .tfvars files which might contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of
+# version control as they are data-specific to the environment.
+*.tfvars
+*.tfvars.json
+# Ignore override files as they are usually used to override resources locally and are not to be committed
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+# Ignore any .env or .auto.tfvars files that may contain sensitive data or environment-specific settings
 .env
+*.auto.tfvars
+# Ignore the workspace files which are local environment settings
+.terraform-workspace
