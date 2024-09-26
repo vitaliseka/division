@@ -13,3 +13,8 @@ variable "environment" {
     type = "string"
     default = "secure"
 }
+variable "rg" {
+    description = "resorcegroup-name"
+    type = "string"
+    default = "rg"
+}
