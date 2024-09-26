@@ -13,6 +13,19 @@ resource "azurerm_key_vault" "this_keyvault" {
     virtual_network_subnet_ids = []
   }
 }
+
+resource "azurerm_key_vault_access_policy" "this_user_assigned_identity" {
+  key_vault_id = azurerm_key_vault.this_keyvault.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = azurerm_user_assigned_identity.this_manageidentity.principal_id
+
+  secret_permissions = [
+
+    "Get"
+
+  ]
+}
+
 #Eka access policy
 resource "azurerm_key_vault_access_policy" "this_eka_access_policy" {
   key_vault_id = azurerm_key_vault.this_keyvault.id
@@ -67,6 +80,12 @@ resource "azurerm_key_vault_access_policy" "this_sam_access_policy" {
 }
 resource "azurerm_key_vault_secret" "this_vm_secret" {
   name         = "${local.owner}-${var.vm_secret}-${local.environment}"
+  value        = random_password.this_password.result
+  key_vault_id = azurerm_key_vault.this_keyvault.id
+}
+
+resource "azurerm_key_vault_secret" "this_felxible_server_secret" {
+  name         = "${local.owner}-${var.flexible_server_secret}-${local.environment}"
   value        = random_password.this_password.result
   key_vault_id = azurerm_key_vault.this_keyvault.id
 }
